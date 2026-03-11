@@ -1,0 +1,28 @@
+class Solution {
+  public:
+    vector<int> maxOfSubarrays(vector<int>& arr, int k) {
+        
+        //right-left+1=k
+        //right-k=left-1
+        
+        
+        vector<int> vals;
+        priority_queue<pair<int,int>> values;
+        
+        for(int i = 0; i < arr.size(); i++)
+        {
+            values.push({arr[i], i});
+            
+            while(values.top().second <= i-k)
+            {
+                values.pop();
+            }
+            
+            if(i >= k - 1)
+            {
+                vals.push_back(values.top().first);
+            }
+        }
+        return vals;
+    }
+};

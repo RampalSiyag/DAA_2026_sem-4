@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Maze Lab — DAA Visualizer</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="scanline-overlay"></div>
+
+    <header>
+      <div class="header-inner">
+        <div class="logo">
+          <span class="logo-bracket">[</span>
+          <span class="logo-text"
+            >MAZE<span class="logo-accent">LAB</span></span
+          >
+          <span class="logo-bracket">]</span>
+        </div>
+        <p class="subtitle">Design & Analysis of Algorithms — Visualizer</p>
+      </div>
+    </header>
+
+    <main>
+      <aside class="sidebar">
+        <section class="control-group">
+          <h2 class="group-label">// CONFIG</h2>
+          <div class="field">
+            <label for="grid-size">Grid Size</label>
+            <div class="slider-row">
+              <input
+                type="range"
+                id="grid-size"
+                min="5"
+                max="31"
+                step="2"
+                value="21"
+              />
+              <span class="slider-val" id="size-display">21×21</span>
+            </div>
+          </div>
+          <div class="field">
+            <label for="anim-speed">Animation Speed</label>
+            <div class="slider-row">
+              <input
+                type="range"
+                id="anim-speed"
+                min="1"
+                max="5"
+                step="1"
+                value="3"
+              />
+              <span class="slider-val" id="speed-display">Normal</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="control-group">
+          <h2 class="group-label">// GENERATE</h2>
+          <button class="btn btn-generate" id="btn-generate">
+            <span class="btn-icon">⬡</span> Generate Maze
+          </button>
+          <div class="algo-tag">
+            Algorithm: <strong>Randomized Prim's</strong>
+          </div>
+        </section>
+
+        <section class="control-group">
+          <h2 class="group-label">// SOLVE</h2>
+          <button class="btn btn-bfs" id="btn-bfs" disabled>
+            <span class="btn-icon">◈</span> Solve with BFS
+          </button>
+          <div class="algo-tag">Finds: <strong>Shortest Path</strong></div>
+
+          <button class="btn btn-dfs" id="btn-dfs" disabled>
+            <span class="btn-icon">◉</span> Solve with DFS
+          </button>
+          <div class="algo-tag">Finds: <strong>Any Valid Path</strong></div>
+
+          <button class="btn btn-reset" id="btn-reset" disabled>
+            ↺ Clear Solution
+          </button>
+        </section>
+
+        <section class="stats-panel">
+          <h2 class="group-label">// STATS</h2>
+          <div class="stat-row">
+            <span class="stat-label">Status</span
+            ><span class="stat-val" id="stat-status">Idle</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">Algorithm</span
+            ><span class="stat-val" id="stat-algo">—</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">Visited</span
+            ><span class="stat-val" id="stat-visited">—</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">Path Length</span
+            ><span class="stat-val" id="stat-path">—</span>
+          </div>
+        </section>
+
+        <section class="legend">
+          <h2 class="group-label">// LEGEND</h2>
+          <div class="legend-row">
+            <span class="legend-swatch start"></span>Start
+          </div>
+          <div class="legend-row">
+            <span class="legend-swatch end"></span>End
+          </div>
+          <div class="legend-row">
+            <span class="legend-swatch wall"></span>Wall
+          </div>
+          <div class="legend-row">
+            <span class="legend-swatch path"></span>Open Path
+          </div>
+          <div class="legend-row">
+            <span class="legend-swatch visited"></span>Visited
+          </div>
+          <div class="legend-row">
+            <span class="legend-swatch solution"></span>Solution
+          </div>
+        </section>
+      </aside>
+
+      <div class="maze-area">
+        <div class="maze-frame">
+          <div class="corner tl"></div>
+          <div class="corner tr"></div>
+          <div class="corner bl"></div>
+          <div class="corner br"></div>
+          <canvas id="maze-canvas"></canvas>
+          <div class="maze-overlay" id="maze-overlay">
+            <div class="overlay-text">
+              Click <strong>Generate Maze</strong> to begin
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <span>BFS — Breadth-First Search</span>
+      <span class="sep">|</span>
+      <span>DFS — Depth-First Search / Backtracking</span>
+      <span class="sep">|</span>
+      <span>DAA Visualizer</span>
+    </footer>
+
+    <script src="maze.js"></script>
+  </body>
+</html>
